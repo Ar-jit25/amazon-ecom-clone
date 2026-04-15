@@ -70,7 +70,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className={styles.priceRow}>
-          <span className={styles.priceCurr}>$</span>
+          <span className={styles.priceCurr}>₹</span>
           <span className={styles.priceWhole}>{dollars}</span>
           <span className={styles.priceFrac}>{cents}</span>
         </div>

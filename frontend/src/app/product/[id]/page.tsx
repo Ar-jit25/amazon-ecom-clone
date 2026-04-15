@@ -137,12 +137,12 @@ export default function ProductDetailPage() {
           {/* Price */}
           <div className={styles.priceRow}>
             <span className={styles.priceDiscount}>-15%</span>
-            <span className={styles.priceCurr}>$</span>
+            <span className={styles.priceCurr}>₹</span>
             <span className={styles.priceWhole}>{Math.floor(product.price)}</span>
             <span className={styles.priceFrac}>{(product.price % 1).toFixed(2).substring(1)}</span>
           </div>
           <div className={styles.listPrice}>
-            List Price: <s>${(product.price * 1.18).toFixed(2)}</s>
+            List Price: <s>₹{(product.price * 1.18).toFixed(2)}</s>
           </div>
           <div className={styles.returns}>
             FREE Returns &nbsp;|&nbsp; FREE delivery <b>tomorrow</b>
@@ -161,7 +161,7 @@ export default function ProductDetailPage() {
         <div className={styles.buyRight}>
           <div className={styles.buyBox}>
             <div className={styles.buyPriceRow}>
-              <span className={styles.buyPriceCurr}>$</span>
+              <span className={styles.buyPriceCurr}>₹</span>
               <span className={styles.buyPriceWhole}>{Math.floor(product.price)}</span>
               <span className={styles.buyPriceFrac}>{(product.price % 1).toFixed(2).substring(1)}</span>
             </div>

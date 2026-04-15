@@ -110,7 +110,7 @@ export default function OrdersPage() {
                     </div>
                     <div className={styles.headerCol}>
                       <span className={styles.headerLabel}>Total</span>
-                      <span className={styles.headerValue}>${order.totalAmount.toFixed(2)}</span>
+                      <span className={styles.headerValue}>₹{order.totalAmount.toFixed(2)}</span>
                     </div>
                     <div className={styles.headerCol}>
                       <span className={styles.headerLabel}>Ship To</span>
@@ -144,7 +144,7 @@ export default function OrdersPage() {
                         </Link>
                         {item.quantity > 1 && <div style={{ fontSize: "13px", color: "var(--amz-muted)" }}>Qty: {item.quantity}</div>}
                         <div style={{ fontSize: "13px", fontWeight: 700, marginTop: "4px" }}>
-                          ${item.price.toFixed(2)}
+                          ₹{item.price.toFixed(2)}
                         </div>
 
                         <div className={styles.itemReturn}>

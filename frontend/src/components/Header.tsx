@@ -40,7 +40,7 @@ export default function Header() {
           </svg>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span className={styles.deliverTop}>Deliver to</span>
-            <span className={styles.deliverBottom}>United States</span>
+            <span className={styles.deliverBottom}>India</span>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ export default function Header() {
             <span style={{ fontWeight: 700, fontSize: '13px' }}>EN</span>
           </div>
           <div className={styles.navItem}>
-            <span className={styles.navTop}>Hello, sign in</span>
+            <span className={styles.navTop}>Hello, anon</span>
             <span className={styles.navBottom}>Account &amp; Lists</span>
           </div>
           <Link href="/orders" className={styles.navItem}>
