@@ -8,16 +8,29 @@ exports.getProducts = async (req, res) => {
     if (category) {
       whereClause.category = category;
     }
+
+    if (search === 'deals') {
+      const all = await prisma.product.findMany();
+      return res.json(all.filter(p => p.id % 3 === 0));
+    }
+    
+    if (search === 'new') {
+      const all = await prisma.product.findMany({ orderBy: { id: 'desc' }, take: 10 });
+      return res.json(all);
+    }
+
     if (search) {
-      whereClause.name = {
-        contains: search,
-        mode: 'insensitive' // Requires Prisma schema for PG to support mode insensitive
-      };
+      whereClause.OR = [
+        { name: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+        { category: { contains: search, mode: 'insensitive' } }
+      ];
     }
 
     const products = await prisma.product.findMany({
       where: whereClause,
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
+      take: 50
     });
     
     res.json(products);

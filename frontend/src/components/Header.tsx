@@ -8,12 +8,10 @@ import styles from "./Header.module.css";
 
 const CATEGORIES = ["All", "Electronics", "Beauty", "Fashion", "Home", "Sports", "Groceries"];
 const NAV_LINKS = [
-  { name: "Today's Deals", href: "/?search=deals" },
-  { name: "Customer Service", href: "/" },
-  { name: "Registry", href: "/?category=Home" },
+  { name: "Today's Deals", href: "/deals" },
+  { name: "Customer Service", href: "/customer-service" },
   { name: "Gift Cards", href: "/?search=gift" },
-  { name: "Sell", href: "/?category=Electronics" },
-  { name: "Prime", href: "/" },
+  { name: "Prime", href: "/prime" },
   { name: "New Releases", href: "/?search=new" },
 ];
 export default function Header() {
