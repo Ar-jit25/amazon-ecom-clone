@@ -10,7 +10,7 @@ async function getProducts(search?: string, category?: string) {
     if (category && category !== "All") params.set("category", category);
     
     // Server-side fetch to backend running locally
-    const url = `http://localhost:5000/api/products${params.toString() ? "?" + params.toString() : ""}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products${params.toString() ? "?" + params.toString() : ""}`;
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error("fetch failed");
     return res.json();

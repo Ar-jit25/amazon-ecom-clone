@@ -5,7 +5,7 @@ import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import styles from "./page.module.css";
 
-const API = "http://localhost:5000/api";
+const API = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api`;
 
 interface Address {
   fullName: string;

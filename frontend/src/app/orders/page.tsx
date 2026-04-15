@@ -6,7 +6,7 @@ import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
-const API = "http://localhost:5000/api";
+const API = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api`;
 
 type OrderItem = {
   id: number;
