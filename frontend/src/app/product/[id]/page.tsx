@@ -222,6 +222,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
+      </div>
         
       {/* Customer Reviews Section */}
       <div className={styles.reviewsSection}>
