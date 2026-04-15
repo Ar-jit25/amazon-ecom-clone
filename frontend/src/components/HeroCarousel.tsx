@@ -5,7 +5,7 @@ import styles from "./HeroCarousel.module.css";
 
 const BANNERS = [
   "https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg", // Original Toys
-  "https://m.media-amazon.com/images/I/71qid7%20OSVML._SX3000_.jpg", // Generic
+  "https://m.media-amazon.com/images/I/71tIrZqybrL._SX3000_.jpg", // Generic
   "https://m.media-amazon.com/images/I/71Ie3JXGfVL._SX3000_.jpg", // Electronics
   "https://m.media-amazon.com/images/I/61CiqVTRBEL._SX3000_.jpg", // Kitchen
 ];

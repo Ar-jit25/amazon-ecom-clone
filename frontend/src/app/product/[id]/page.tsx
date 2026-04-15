@@ -138,11 +138,11 @@ export default function ProductDetailPage() {
           <div className={styles.priceRow}>
             <span className={styles.priceDiscount}>-15%</span>
             <span className={styles.priceCurr}>₹</span>
-            <span className={styles.priceWhole}>{Math.floor(product.price)}</span>
+            <span className={styles.priceWhole}>{Math.floor(product.price).toLocaleString("en-IN")}</span>
             <span className={styles.priceFrac}>{(product.price % 1).toFixed(2).substring(1)}</span>
           </div>
           <div className={styles.listPrice}>
-            List Price: <s>₹{(product.price * 1.18).toFixed(2)}</s>
+            List Price: <s>₹{(product.price * 1.18).toLocaleString("en-IN", {maximumFractionDigits: 0})}</s>
           </div>
           <div className={styles.returns}>
             FREE Returns &nbsp;|&nbsp; FREE delivery <b>tomorrow</b>
@@ -162,7 +162,7 @@ export default function ProductDetailPage() {
           <div className={styles.buyBox}>
             <div className={styles.buyPriceRow}>
               <span className={styles.buyPriceCurr}>₹</span>
-              <span className={styles.buyPriceWhole}>{Math.floor(product.price)}</span>
+              <span className={styles.buyPriceWhole}>{Math.floor(product.price).toLocaleString("en-IN")}</span>
               <span className={styles.buyPriceFrac}>{(product.price % 1).toFixed(2).substring(1)}</span>
             </div>
 
@@ -194,9 +194,9 @@ export default function ProductDetailPage() {
             </button>
 
             <button
-              onClick={() => {
-                addToCart(product.id);
-                setTimeout(() => router.push("/checkout"), 300);
+              onClick={async () => {
+                for(let i=0; i<quantity; i++) await addToCart(product.id);
+                router.push("/checkout");
               }}
               className={`btn-orange ${styles.buyNowBtn}`}
             >

@@ -88,7 +88,7 @@ export default function CartPage() {
 
               {/* Price */}
               <div className={styles.itemPrice}>
-                ₹{(item.product.price * item.quantity).toFixed(2)}
+                ₹{(item.product.price * item.quantity).toLocaleString("en-IN", {maximumFractionDigits: 0})}
               </div>
             </div>
           ))}
@@ -96,7 +96,7 @@ export default function CartPage() {
           {/* Subtotal bottom */}
           <div className={styles.subtotalBot}>
             Subtotal ({totalItems} item{totalItems !== 1 ? "s" : ""}):{" "}
-            <span className={styles.subtotalBold}>₹{subtotal.toFixed(2)}</span>
+            <span className={styles.subtotalBold}>₹{subtotal.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
           </div>
         </div>
 
@@ -111,10 +111,10 @@ export default function CartPage() {
 
           <div className={styles.sumSubtotal}>
             Subtotal ({totalItems} item{totalItems !== 1 ? "s" : ""}):{" "}
-            <span className={styles.subtotalBold}>₹{subtotal.toFixed(2)}</span>
+            <span className={styles.subtotalBold}>₹{subtotal.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
           </div>
           <div className={styles.sumTax}>
-            + Est. tax: ₹{estimatedTax.toFixed(2)}
+            + Est. tax: ₹{estimatedTax.toLocaleString("en-IN", {maximumFractionDigits: 0})}
           </div>
 
           <button

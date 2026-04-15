@@ -250,7 +250,7 @@ export default function CheckoutPage() {
                       <div className={styles.reviewStock}>In stock</div>
                       <div className={styles.reviewQty}>Qty: {item.quantity}</div>
                     </div>
-                    <div className={styles.reviewPrice}>₹{(item.product.price * item.quantity).toFixed(2)}</div>
+                    <div className={styles.reviewPrice}>₹{(item.product.price * item.quantity).toLocaleString("en-IN", {maximumFractionDigits: 0})}</div>
                   </div>
                 ))}
                 <div className={styles.reviewDelivery}>
@@ -287,7 +287,7 @@ export default function CheckoutPage() {
             <h3 className={styles.sumHeading}>Order Summary</h3>
             <div className={styles.sumRow}>
               <span>Items ({totalItems}):</span>
-              <span>₹{subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
             </div>
             <div className={styles.sumRow}>
               <span>Shipping & handling:</span>
@@ -296,16 +296,16 @@ export default function CheckoutPage() {
             <div className={styles.sumDivider} />
             <div className={styles.sumRow}>
               <span>Total before tax:</span>
-              <span>₹{subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
             </div>
             <div className={styles.sumRow}>
               <span>Estimated tax (8%):</span>
-              <span>₹{tax.toFixed(2)}</span>
+              <span>₹{tax.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
             </div>
             <div className={styles.sumDivider} />
             <div className={styles.sumTotal}>
               <span>Order total:</span>
-              <span>₹{total.toFixed(2)}</span>
+              <span>₹{total.toLocaleString("en-IN", {maximumFractionDigits: 0})}</span>
             </div>
 
             <p className={styles.terms} style={{ marginTop: '20px', marginBottom: 0 }}>
