@@ -1,0 +1,77 @@
+/* Amazon Clone - Global Styles (Vanilla CSS) */
+
+:root {
+  --amz-nav:        #131921;
+  --amz-nav-sub:    #232f3e;
+  --amz-orange:     #febd69;
+  --amz-yellow:     #ffd814;
+  --amz-yellow-h:   #f7ca00;
+  --amz-orange-btn: #ffa41c;
+  --amz-orange-h:   #fa8900;
+  --amz-bg:         #eaeded;
+  --amz-text:       #0f1111;
+  --amz-price:      #B12704;
+  --amz-border:     #d5d9d9;
+  --amz-link:       #007185;
+  --amz-link-h:     #C45500;
+  --amz-muted:      #565959;
+  --amz-green:      #007600;
+  --amz-white:      #ffffff;
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --radius-lg:      12px;
+  --radius-full:    9999px;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,.13);
+  --shadow-md:      0 2px 8px rgba(0,0,0,.18);
+  --max-w:          1500px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Amazon Ember", "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: var(--amz-bg);
+  color: var(--amz-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button { cursor: pointer; font-family: inherit; }
+
+img { display: block; max-width: 100%; }
+
+/* ── Utility classes ── */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 16px; }
+
+.amz-link { color: var(--amz-link); }
+.amz-link:hover { color: var(--amz-link-h); text-decoration: underline; }
+
+.btn-yellow {
+  background: var(--amz-yellow);
+  border: 1px solid #FCD200;
+  border-radius: var(--radius-full);
+  color: var(--amz-text);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 20px;
+  transition: background .15s, box-shadow .15s;
+  box-shadow: 0 2px 5px rgba(15,17,17,.15);
+}
+.btn-yellow:hover { background: var(--amz-yellow-h); box-shadow: var(--shadow-md); }
+
+.btn-orange {
+  background: var(--amz-orange-btn);
+  border: 1px solid #FF8F00;
+  border-radius: var(--radius-full);
+  color: var(--amz-white);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 20px;
+  transition: background .15s, box-shadow .15s;
+}
+.btn-orange:hover { background: var(--amz-orange-h); box-shadow: var(--shadow-md); }

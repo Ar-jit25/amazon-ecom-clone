@@ -1,0 +1,209 @@
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+.wrapNarrow { max-width: 600px; margin: 0 auto; padding: 64px 16px; text-align: center; }
+
+/* Empty or Success */
+.statusCard {
+  background: var(--amz-white);
+  border: 1px solid var(--amz-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.statusIcon { font-size: 48px; margin-bottom: 16px; }
+.statusIconSuccess {
+  width: 64px; height: 64px; margin: 0 auto 20px;
+  background: #e6f6ee; color: var(--amz-green); border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+}
+.statusIconSuccess svg { width: 32px; height: 32px; }
+
+.statusTitle { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+.statusTitleSuccess { color: var(--amz-green); }
+.statusDesc { color: var(--amz-muted); margin-bottom: 24px; }
+
+.orderNumberBox {
+  background: #f3f3f3;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  display: inline-block;
+  margin-bottom: 24px;
+}
+.orderNumberLabel { font-size: 13px; color: var(--amz-muted); }
+.orderNumberValue { font-size: 20px; font-weight: 700; color: var(--amz-text); }
+
+/* Layout */
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.leftCol { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.rightCol { width: 320px; flex-shrink: 0; }
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .rightCol { width: 100%; }
+}
+
+/* Steps */
+.stepLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--amz-muted);
+  margin-bottom: 24px;
+}
+.stepActive { color: #C45500; font-weight: 700; }
+
+.stepCard {
+  background: var(--amz-white);
+  border: 1px solid var(--amz-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.stepCardActive {
+  border-color: #e77600;
+  box-shadow: 0 0 0 3px rgba(228,121,17,.5);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+.stepHeaderLeft { display: flex; align-items: center; gap: 12px; }
+
+.stepBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--amz-nav);
+  color: var(--amz-white);
+}
+.stepBadgeDone { background: var(--amz-green); color: var(--amz-white); }
+.stepBadgePending { background: #ccc; color: var(--amz-white); }
+
+.stepTitle { font-size: 18px; font-weight: 700; color: var(--amz-text); }
+
+.stepSummary { text-align: right; font-size: 14px; color: var(--amz-muted); line-height: 1.4; }
+.stepSummary b { color: var(--amz-text); display: block; }
+
+/* Step Content */
+.stepContent { padding: 0 20px 20px; }
+
+.fieldRow { margin-bottom: 16px; }
+.fieldRowGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+.label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #888;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  outline: none;
+  background: var(--amz-white);
+}
+.input:focus { border-color: var(--amz-orange); box-shadow: 0 0 0 2px rgba(254,189,105,.5); }
+.inputError { border-color: #d00; background: #fff8f8; }
+.errorMsg { color: #d00; font-size: 12px; margin-top: 4px; }
+
+.useAddressBtn, .usePaymentBtn {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Payment Info */
+.paymentRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f9f9f9;
+  border: 1px solid var(--amz-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+.payIcon { font-size: 28px; }
+.payTitle { font-weight: 600; font-size: 14px; }
+.paySub { font-size: 12px; color: var(--amz-muted); }
+.payRadio {
+  margin-left: auto;
+  width: 16px; height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--amz-yellow);
+  border: 4px solid var(--amz-nav);
+}
+
+/* Review Items */
+.reviewItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+.reviewItem:last-child { border-bottom: none; }
+.reviewImg { width: 64px; height: 64px; object-fit: contain; border: 1px solid #eee; padding: 4px; }
+.reviewInfo { flex: 1; font-size: 13px; line-height: 1.4; }
+.reviewName { font-weight: 500; margin-bottom: 2px; }
+.reviewStock { color: var(--amz-green); font-size: 12px; }
+.reviewQty { color: var(--amz-muted); }
+.reviewPrice { font-weight: 700; font-size: 14px; }
+.reviewDelivery { font-size: 14px; color: var(--amz-muted); margin-top: 12px; }
+
+/* Right Summary */
+.summaryBox {
+  background: var(--amz-white);
+  border: 1px solid var(--amz-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  position: sticky;
+  top: 100px;
+  box-shadow: var(--shadow-sm);
+}
+
+.placeBtn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.placeBtnDisabled {
+  background: #f0f2f2;
+  border-color: var(--amz-border);
+  color: #888;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.placeSpinner {
+  width: 16px; height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.terms { font-size: 12px; color: var(--amz-muted); text-align: center; margin-bottom: 16px; }
+
+.sumHeading { font-size: 18px; font-weight: 700; border-bottom: 1px solid var(--amz-border); padding-bottom: 8px; margin-bottom: 12px; }
+.sumRow { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.sumRow color { color: var(--amz-muted); }
+.sumFree { color: var(--amz-green); }
+.sumDivider { border-top: 1px solid var(--amz-border); margin: 8px 0; padding-top: 8px; }
+.sumTotal { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #B12704; margin-top: 4px; }

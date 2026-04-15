@@ -1,0 +1,93 @@
+/* Home page */
+.hero {
+  position: relative;
+  overflow: hidden;
+  height: 380px;
+}
+.heroBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.heroFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--amz-bg));
+}
+
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 16px; }
+
+/* Category pills */
+.pills {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+.pills::-webkit-scrollbar { display: none; }
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--amz-border);
+  background: var(--amz-white);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--amz-text);
+  transition: border-color .15s, background .15s;
+  flex-shrink: 0;
+}
+.pill:hover   { border-color: var(--amz-text); }
+.pillActive   { background: var(--amz-text); color: var(--amz-white); border-color: var(--amz-text); }
+
+/* Section heading */
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.headingTitle { font-size: 22px; font-weight: 700; }
+.headingCount { font-size: 13px; color: var(--amz-muted); }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 80px 16px;
+}
+.emptyIcon  { font-size: 56px; margin-bottom: 12px; }
+.emptyTitle { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.emptyText  { color: var(--amz-muted); margin-bottom: 24px; }
+.emptyBtn {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--amz-yellow);
+  border: 1px solid #FCD200;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--amz-text);
+  text-decoration: none;
+  transition: background .15s;
+}
+.emptyBtn:hover { background: var(--amz-yellow-h); }
