@@ -79,6 +79,34 @@ npm run dev
 
 ---
 
+## 🚀 Live Deployment Guide
+
+Deploying this environment is highly streamlined using modern serverless platforms.
+
+### 1. Database (Supabase)
+1. Launch a PostgreSQL instance via **Supabase**.
+2. **Crucial Next Step**: Navigate to *Project Settings → Database → Connection Pooling*.
+3. Ensure the mode is set to **Transaction**, retrieve the pooled connection string (port `6543`), and append `?pgbouncer=true` to the end. This becomes your `DATABASE_URL`.
+4. Grab the *Session* direct pooling string (port `5432`). This becomes your `DIRECT_URL`.
+
+### 2. Backend API (Render)
+1. Fork/Push this repository to your GitHub account and integrate it with a new Render Web Service.
+2. Target the `backend` directory.
+3. Build Command: `npm install && npx prisma db push`
+4. Start Command: `npm run start` (Starts via `node index.js`)
+5. Define the `DATABASE_URL` and `DIRECT_URL` environment variables securely inside Render matching the links created above. *Never push these to GitHub!*
+6. Deploy. Render will issue an API host link (e.g. `https://name.onrender.com`).
+
+### 3. Frontend Application (Vercel)
+1. Integrate the same repository on Vercel as a new Project.
+2. Target the `frontend` root directory.
+3. Automatically build via Next.js presets.
+4. Establish a single secure Environment Variable:
+   - `NEXT_PUBLIC_API_URL` -> Value = The completed Render link (*e.g., https://name.onrender.com/api*).
+5. Deploy the application to witness the live production build synchronized globally.
+
+---
+
 ## 🔒 Assumptions & Constraints
 - Local DB scripts gracefully bypass constraints if run safely in isolation.
-- Authentication was bypassed dynamically ("No Login Required") strictly catering to the designated SDE assignment grading constraints. All operations interact directly via the established RESTful pipelines contextually.
+- Authentication was bypassed dynamically ("Hello, anon") strictly catering to designated SDE assignment grading constraints. All operations interact directly via the established RESTful pipelines contextually.
