@@ -1,112 +1,223 @@
-# Amazon Clone - SDE Intern Fullstack Assignment
+# Amazon Clone — Full-Stack E-Commerce Application
 
-A robust, production-ready full-stack e-commerce web application that closely replicates Amazon's design, taxonomy, and user experience. Built completely from scratch without external component libraries, this project relies on vanilla CSS Modules to demonstrate advanced core styling proficiency while providing a seamless shopping workflow.
+A production-ready, full-stack Amazon clone built from scratch as part of an SDE Intern assignment. The application replicates Amazon India's core shopping experience, complete with a real database, RESTful API, live deployment, and genuine INR pricing.
 
-## 🚀 Technical Stack
-- **Frontend**: Next.js 16 (App Router), React, TypeScript
-- **Styling**: Vanilla CSS Modules (Strict adherence to pure CSS, specifically avoiding Tailwind/Bootstrap)
-- **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL with Prisma ORM
-- **Assets**: Locally served, high-quality product imagery and dynamically generated placeholders
+🔗 **Live App**: [Deployed on Vercel]  
+🔗 **Backend API**: [Deployed on Render]  
+🔗 **Repository**: https://github.com/Ar-jit25/amazon-ecom-clone
 
 ---
 
-## ✨ Features Implemented
+## 🚀 Tech Stack
 
-### 1. Robust Core UI & Architecture
-- **Authentic Styling**: A meticulously crafted design system utilizing native CSS Variables (`globals.css`) and modular components matching Amazon's UI/UX.
-- **Dynamic Header & Footer**: Replicated the real Amazon multi-column footer and implemented a functional sticky header featuring dynamic SVG icons, category filtering, and location pin graphics.
-- **Hero Carousel Banner**: Replaced static imagery with an active, auto-scrolling promotional carousel simulating active Amazon discount offers.
-
-### 2. Product Pipeline & Database Engineering
-- **Unified External APIs**: Engineered backend scripts (`importApiProducts.js` & `importDummyJson.js`) to scrape, parse, and unify products from two separate open-source JSON APIs. 
-- **Dynamic Categorization**: Overhauled the database taxonomy to map incoming disparate items into a polished list of 6 distinct categories (`Electronics`, `Beauty`, `Fashion`, `Home`, `Sports`, `Groceries`) with matching frontend dynamic routing.
-- **Local Asset Hosting**: Automated the scraping and local downloading of **70 robust HD product images** into the `.next` server environment to prevent broken external CDN links. Implemented an automatic `Placehold.co` API fallback for any localized missing product tags.
-
-### 3. Shopping Experience
-- **Product Listing Page**: Grid layout mimicking Amazon with category-filtered filtering logic.
-- **Product Detail Form (PDP)**: Realistic item specifics with "In Stock" indicators, subtotal calculations, simulated delivery windows, and synchronized Add-to-Cart functionality.
-- **Global Shopping Cart**: Real-time state-synced cart (powered by `CartContext`) enabling updates to item quantity, accurate localized tax computations, and deletions.
-
-### 4. Checkout & Order Management Workflow
-- **Multi-Step Checkout**: Built a responsive, multi-view sequential checkout pipeline. Form state is preserved flawlessly without unmount-focus bugs. Submits finalized payload models accurately back to PostgreSQL.
-- **Orders Dashboard**: Added a comprehensive `Orders & Returns` board enabling users to track completed purchases against dynamic timestamps, review simulated subtotal data, and instantly trigger a recursive "Buy it again" cart integration.
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 16 (App Router), React, TypeScript |
+| **Styling** | Vanilla CSS Modules (zero Tailwind/Bootstrap) |
+| **Backend** | Node.js, Express.js |
+| **ORM** | Prisma |
+| **Database** | PostgreSQL (hosted on Supabase) |
+| **Deployment** | Vercel (frontend) + Render (backend) |
 
 ---
 
-## 💾 Database Schema (Prisma)
-The database uses a robust relational PostgreSQL model:
-- `Product`: Catalogs all items (id, name, desc, price, optimized local imageUrl, schema category, stock limit).
-- `Order`: Aggregates placed order histories with dynamic shipping destinations.
-- `OrderItem`: Granularly links historical prices of items tied to specific orders.
-- `CartItem`: Maps real-time tracked session inventories awaiting checkout.
+## ✨ Features
+
+### 🏠 Homepage & Navigation
+- **Hero Carousel** — Auto-scrolling promotional banners
+- **Category Pills** — Filter by Electronics, Beauty, Fashion, Home, Sports, Groceries
+- **Sticky Header** — Search bar with category dropdown, cart counter, location (India), user (anon)
+- **Functional Navbar** — All bottom-bar links route to real pages (Deals, Prime, Customer Service, New Releases, Gift Cards)
+- **Indian Number Formatting** — All prices use `en-IN` locale (₹1,23,456 format)
+
+### 🛍️ Product Experience
+- **Product Grid** — Card layout with star ratings, review counts, and Add to Cart
+- **Product Detail Page (PDP)** — Image thumbnails, quantity stepper (±), buy box, delivery info, "About this item", and customer reviews
+- **Customer Reviews Section** — Static realistic reviews with star ratings and Indian dates
+- **Search** — Full-text keyword search across name, description, and category
+- **Category Filtering** — Via URL params (`?category=Electronics`)
+
+### 🛒 Cart & Checkout
+- **Global Cart** — Real-time synced via `CartContext`, persisted in PostgreSQL
+- **Cart Page** — Quantity management, subtotal, item removal
+- **Multi-Step Checkout** — Address → Payment → Confirmation, order submitted to DB
+- **Buy Now** — Bypasses cart, goes directly to checkout with selected quantity
+
+### 📦 Orders
+- **Orders Dashboard** — Lists all past orders with timestamps, items, and totals
+- **Buy it Again** — Instantly re-adds previous order items to cart
+
+### 🔥 Today's Deals (`/deals`)
+- Dedicated page with real strikethrough prices (e.g. ~~₹1,07,143~~ → ₹74,700)
+- Category-smart discount rates (Fashion 40%, Electronics 28%, etc.)
+- Deal tags: "Lightning deal", "Deal of the Day", "Limited time offer"
+- Orange **claimed %** progress bar per item
+
+### 👑 Amazon Prime (`/prime`)
+- Full Prime landing page replicating real Amazon Prime UI
+- **Monthly (₹299)** and **Annual (₹1,499)** plan selector
+- Feature grid: Delivery, Prime Video, Music, Reading, Gaming, Early Access
+- **Functional "Join Prime" button** — adds to cart and routes to checkout
+- Cancel anytime messaging, animated hover states
+
+### 🎧 Customer Service (`/customer-service`)
+- **FAQ tab** — Accordion-style answers to 6 common questions
+- **Contact tab** — Live Chat, Phone (1800-3000-9009), Email cards
+- **Problem selector** — Quick-pick common issue buttons
+
+### 🆕 New Releases (`/?search=new`)
+- Returns the 10 most recently added products from the database
 
 ---
 
-## 💻 Local Setup Instructions
+## 💾 Database Schema
 
-### 1. Setup Database
-You must have a local PostgreSQL instance running prior to executing.
-1. Create a database named `amazon_clone`.
-2. Ensure `backend/.env` is hydrated with your valid credentials:
-   ```env
-   DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/amazon_clone"
-   ```
+```prisma
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  price       Float       // Stored in INR (realistic Indian pricing)
+  imageUrl    String
+  category    String
+  stock       Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
 
-### 2. Run Backend API Environment
+model Order {
+  id         Int         @id @default(autoincrement())
+  total      Float
+  address    String
+  createdAt  DateTime    @default(now())
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id])
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  quantity  Int
+}
+```
+
+---
+
+## 💻 Local Development
+
+### Prerequisites
+- Node.js 18+
+- PostgreSQL database (local or Supabase)
+
+### 1. Clone & Configure
+
+```bash
+git clone https://github.com/Ar-jit25/amazon-ecom-clone.git
+cd amazon-ecom-clone
+```
+
+Create `backend/.env`:
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/amazon_clone"
+DIRECT_URL="postgresql://USER:PASSWORD@HOST:5432/amazon_clone"
+```
+
+### 2. Start Backend
+
 ```bash
 cd backend
 npm install
-
-# Force synchronous database schema syncing
-npx prisma db push
-
-# Launch the Node.js Express server
-npm run dev
+npx prisma db push        # Sync schema
+node importApiProducts.js # Seed products (if DB is empty)
+npm run dev               # Starts on http://localhost:5000
 ```
-*(The API listener will securely attach itself to `http://localhost:5000`)*
 
-### 3. Run Frontend Server
-In a secondary terminal window:
+### 3. Start Frontend
+
 ```bash
 cd frontend
 npm install
-
-# Force Next.js frontend binding
-npm run dev
+# Create frontend/.env.local:
+# NEXT_PUBLIC_API_URL=http://localhost:5000/api
+npm run dev               # Starts on http://localhost:3000
 ```
-*(The user application will flawlessly compile and launch on `http://localhost:3000`)*
 
 ---
 
-## 🚀 Live Deployment Guide
+## 🌐 Production Deployment
 
-Deploying this environment is highly streamlined using modern serverless platforms.
+### 1. Database — Supabase
+1. Create a new Supabase project and launch a PostgreSQL instance.
+2. Go to **Project Settings → Database → Connection Pooling**.
+3. Set mode to **Transaction**, copy the pooled string (port `6543`), append `?pgbouncer=true` → this is your `DATABASE_URL`.
+4. Copy the direct connection string (port `5432`) → this is your `DIRECT_URL`.
 
-### 1. Database (Supabase)
-1. Launch a PostgreSQL instance via **Supabase**.
-2. **Crucial Next Step**: Navigate to *Project Settings → Database → Connection Pooling*.
-3. Ensure the mode is set to **Transaction**, retrieve the pooled connection string (port `6543`), and append `?pgbouncer=true` to the end. This becomes your `DATABASE_URL`.
-4. Grab the *Session* direct pooling string (port `5432`). This becomes your `DIRECT_URL`.
+### 2. Backend — Render
+1. Create a new **Web Service** on Render, connect your GitHub repo.
+2. Set **Root Directory** to `backend`.
+3. **Build Command**: `npm install && npx prisma db push`
+4. **Start Command**: `node index.js`
+5. Add environment variables: `DATABASE_URL`, `DIRECT_URL`
+6. Deploy → copy the service URL (e.g. `https://your-app.onrender.com`)
 
-### 2. Backend API (Render)
-1. Fork/Push this repository to your GitHub account and integrate it with a new Render Web Service.
-2. Target the `backend` directory.
-3. Build Command: `npm install && npx prisma db push`
-4. Start Command: `npm run start` (Starts via `node index.js`)
-5. Define the `DATABASE_URL` and `DIRECT_URL` environment variables securely inside Render matching the links created above. *Never push these to GitHub!*
-6. Deploy. Render will issue an API host link (e.g. `https://name.onrender.com`).
+### 3. Frontend — Vercel
+1. Import the repo into Vercel, set **Root Directory** to `frontend`.
+2. Add environment variable:
+   - `NEXT_PUBLIC_API_URL` = `https://your-app.onrender.com/api`
+3. Deploy.
 
-### 3. Frontend Application (Vercel)
-1. Integrate the same repository on Vercel as a new Project.
-2. Target the `frontend` root directory.
-3. Automatically build via Next.js presets.
-4. Establish a single secure Environment Variable:
-   - `NEXT_PUBLIC_API_URL` -> Value = The completed Render link (*e.g., https://name.onrender.com/api*).
-5. Deploy the application to witness the live production build synchronized globally.
+> ⚠️ Never commit `.env` files or expose your database credentials.
+
+---
+
+## 📁 Project Structure
+
+```
+amazon-clone/
+├── backend/
+│   ├── controllers/
+│   │   ├── productController.js    # GET /products with search/category/deals/new
+│   │   ├── cartController.js
+│   │   └── orderController.js
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── importApiProducts.js        # Seeds products from kolzsticks API
+│   ├── importDummyJson.js          # Seeds from dummyjson.com
+│   ├── cleanCategories.js          # Normalizes categories to 6 core groups
+│   └── index.js
+│
+└── frontend/
+    └── src/
+        ├── app/
+        │   ├── page.tsx                # Homepage
+        │   ├── deals/                  # Today's Deals page
+        │   ├── prime/                  # Amazon Prime subscription page
+        │   ├── customer-service/       # FAQ + Contact page
+        │   ├── new-releases/           # New Releases redirect
+        │   ├── product/[id]/           # Product Detail Page
+        │   ├── cart/                   # Cart page
+        │   ├── checkout/               # Multi-step checkout
+        │   └── orders/                 # Orders dashboard
+        ├── components/
+        │   ├── Header.tsx              # Sticky header with search + nav
+        │   ├── ProductCard.tsx         # Product grid card
+        │   └── HeroCarousel.tsx        # Auto-scrolling banner
+        └── context/
+            └── CartContext.tsx         # Global cart state
+```
 
 ---
 
 ## 🔒 Assumptions & Constraints
-- Local DB scripts gracefully bypass constraints if run safely in isolation.
-- Authentication was bypassed dynamically ("Hello, anon") strictly catering to designated SDE assignment grading constraints. All operations interact directly via the established RESTful pipelines contextually.
+- Authentication is bypassed — the default user is shown as "**Hello, anon**" to comply with assignment constraints where full auth was out of scope.
+- All prices are in **Indian Rupees (₹)** using the `en-IN` number formatting system (Lakhs and Crores).
+- Cart is session-agnostic — it persists in the PostgreSQL `CartItem` table rather than localStorage, enabling server-side cart reads.
+- Deals, discounts, and "New Releases" labels are algorithmically assigned rather than stored as DB flags, keeping the schema minimal.
