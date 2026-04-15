@@ -211,3 +211,22 @@
 }
 .emojiBig { font-size: 64px; margin-bottom: 16px; }
 .errorTitle { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+
+
+/* Custom Qty Stepper */
+.qtyStepper { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--amz-border); border-radius: var(--radius-md); overflow: hidden; background: #f0f2f2; width: 100%; margin-bottom: 12px; }
+.qtyBtn { background: #e3e6e6; border: none; padding: 8px 16px; cursor: pointer; font-size: 18px; font-weight: 500; transition: background .2s; }
+.qtyBtn:hover { background: #d5d9d9; }
+.qtyVal { font-size: 15px; font-weight: 500; flex: 1; text-align: center; }
+
+/* Reviews Section */
+.reviewsSection { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--amz-border); }
+.reviewsTitle { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+.reviewsList { display: flex; flex-direction: column; gap: 24px; max-width: 800px; }
+.reviewCard { margin-bottom: 16px; }
+.reviewerProf { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.reviewerAvatar { width: 34px; height: 34px; border-radius: 50%; background: #e3e6e6; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.reviewerName { font-size: 14px; font-weight: 500; }
+.reviewHeading { font-size: 14px; font-weight: 700; margin-top: 6px; }
+.reviewDate { font-size: 13px; color: var(--amz-muted); margin-bottom: 8px; display: block; }
+.reviewBody { font-size: 14px; line-height: 1.5; color: #0f1111; }

@@ -26,7 +26,7 @@ function StarRating({ stars, count }: { stars: number; count: number }) {
           </svg>
         ))}
       </div>
-      <span className={styles.reviewCt}>{count.toLocaleString()} ratings</span>
+      {count > 0 && <span className={styles.reviewCt}>{count.toLocaleString()} ratings</span>}
     </div>
   );
 }
@@ -175,15 +175,11 @@ export default function ProductDetailPage() {
             {/* Quantity */}
             <div className={styles.qtyWrap}>
               <label className={styles.qtyLabel}>Quantity:</label>
-              <select
-                value={quantity}
-                onChange={(e) => setQuantity(parseInt(e.target.value))}
-                className={styles.qtySelect}
-              >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                  <option key={n} value={n}>Qty: {n}</option>
-                ))}
-              </select>
+              <div className={styles.qtyStepper}>
+                <button className={styles.qtyBtn} onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button>
+                <span className={styles.qtyVal}>{quantity}</span>
+                <button className={styles.qtyBtn} onClick={() => setQuantity(Math.min(10, quantity + 1))}>+</button>
+              </div>
             </div>
 
             <button
@@ -226,7 +222,46 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
+        
+      {/* Customer Reviews Section */}
+      <div className={styles.reviewsSection}>
+        <h2 className={styles.reviewsTitle}>Customer reviews</h2>
+        <div className={styles.reviewsList}>
+          <div className={styles.reviewCard}>
+            <div className={styles.reviewerProf}>
+              <div className={styles.reviewerAvatar}>👤</div>
+              <span className={styles.reviewerName}>Verified Amazon Customer</span>
+            </div>
+            <StarRating stars={5} count={0} />
+            <h4 className={styles.reviewHeading}>Exactly what I needed!</h4>
+            <span className={styles.reviewDate}>Reviewed in India on 12 October 2023</span>
+            <p className={styles.reviewBody}>This product blew away my expectations. The quality is outstanding, and the delivery was incredibly fast. I highly recommend picking this up!</p>
+          </div>
+          
+          <div className={styles.reviewCard}>
+            <div className={styles.reviewerProf}>
+              <div className={styles.reviewerAvatar}>👤</div>
+              <span className={styles.reviewerName}>Rahul S.</span>
+            </div>
+            <StarRating stars={4} count={0} />
+            <h4 className={styles.reviewHeading}>Good value for money</h4>
+            <span className={styles.reviewDate}>Reviewed in India on 4 January 2024</span>
+            <p className={styles.reviewBody}>Decent build quality and does exactly what it says on the box. I took away one star because the packaging was slightly dented, but the item itself is perfect.</p>
+          </div>
+
+          <div className={styles.reviewCard}>
+            <div className={styles.reviewerProf}>
+              <div className={styles.reviewerAvatar}>👤</div>
+              <span className={styles.reviewerName}>Priya M.</span>
+            </div>
+            <StarRating stars={3.5} count={0} />
+            <h4 className={styles.reviewHeading}>Works as expected</h4>
+            <span className={styles.reviewDate}>Reviewed in India on 22 February 2024</span>
+            <p className={styles.reviewBody}>It's a solid average product. Nothing extraordinary but definitely completely functional. Matches the description.</p>
+          </div>
+        </div>
       </div>
+      
     </div>
   );
 }
