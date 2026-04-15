@@ -48,7 +48,7 @@ export default function ProductCard({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 2000);
   }, [addToCart, product.id]);
 
-  const dollars = Math.floor(product.price);
+  const dollars = Math.floor(product.price).toLocaleString("en-IN");
   const cents = (product.price % 1).toFixed(2).slice(1);
 
   return (

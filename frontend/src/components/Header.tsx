@@ -7,8 +7,15 @@ import { useState } from "react";
 import styles from "./Header.module.css";
 
 const CATEGORIES = ["All", "Electronics", "Beauty", "Fashion", "Home", "Sports", "Groceries"];
-const NAV_ITEMS = ["Today's Deals", "Customer Service", "Registry", "Gift Cards", "Sell", "Prime", "New Releases"];
-
+const NAV_LINKS = [
+  { name: "Today's Deals", href: "/?search=deals" },
+  { name: "Customer Service", href: "/" },
+  { name: "Registry", href: "/?category=Home" },
+  { name: "Gift Cards", href: "/?search=gift" },
+  { name: "Sell", href: "/?category=Electronics" },
+  { name: "Prime", href: "/" },
+  { name: "New Releases", href: "/?search=new" },
+];
 export default function Header() {
   const { totalItems } = useCart();
   const router = useRouter();
@@ -101,14 +108,16 @@ export default function Header() {
 
       {/* ── Bottom bar ── */}
       <div className={styles.bottomBar}>
-        <div className={styles.bottomItem}>
+        <Link href="/" className={styles.bottomItem}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           All
-        </div>
-        {NAV_ITEMS.map((item) => (
-          <div key={item} className={styles.bottomItem}>{item}</div>
+        </Link>
+        {NAV_LINKS.map((link) => (
+          <Link href={link.href} key={link.name} className={styles.bottomItem}>
+            {link.name}
+          </Link>
         ))}
       </div>
     </header>
